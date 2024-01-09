@@ -1,5 +1,6 @@
 package kg.mega.rentcarpr.mapper;
 
+import kg.mega.rentcarpr.dto.PriceDTO;
 import kg.mega.rentcarpr.model.Price;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
@@ -15,4 +16,4 @@ public interface PriceMapper {
     List<PriceDTO>toDTOList(List<Price>priceList);
 
 }
-}
+

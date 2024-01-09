@@ -1,5 +1,6 @@
 package kg.mega.rentcarpr.mapper;
 
+import kg.mega.rentcarpr.dto.DiscountDTO;
 import kg.mega.rentcarpr.model.Discount;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
@@ -13,5 +14,5 @@ public interface DiscountMapper {
     DiscountDTO toDto(Discount discount);
     List<Discount> toEntityList(List<DiscountDTO>discountDTOList);
 
-    List<DiscountDTO> toDtoList(List<Discount>discountList)
+    List<DiscountDTO> toDtoList(List<Discount>discountList);
 }

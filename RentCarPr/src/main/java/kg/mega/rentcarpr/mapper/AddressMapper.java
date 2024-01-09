@@ -1,5 +1,6 @@
 package kg.mega.rentcarpr.mapper;
 
+import kg.mega.rentcarpr.dto.AddressDTO;
 import kg.mega.rentcarpr.model.Address;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
@@ -14,4 +15,4 @@ public interface AddressMapper {
     List<Address> toEntityList(List<AddressDTO>addressDTOList);
     List<AddressDTO>toDTOList(List<Address > addressList);
 }
-}
+

@@ -1,5 +1,6 @@
 package kg.mega.rentcarpr.mapper;
 
+import kg.mega.rentcarpr.dto.CarDetailsDTO;
 import kg.mega.rentcarpr.model.CarDetails;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
