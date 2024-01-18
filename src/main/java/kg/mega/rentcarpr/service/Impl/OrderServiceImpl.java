@@ -8,6 +8,10 @@ import kg.mega.rentcarpr.service.CarService;
 import kg.mega.rentcarpr.service.DiscountService;
 import kg.mega.rentcarpr.service.OrderService;
 import lombok.RequiredArgsConstructor;
+import okhttp3.HttpUrl;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -67,9 +71,28 @@ public class OrderServiceImpl implements OrderService {
         order.setPriceWithDiscount(beforeTotalPrice);
         order.setPriceWithDiscount(totalPrice);
 
-       // sendMail(order.getClientEmail(),"Your invoice saved"+totalPrice.doubleValue(),toString());
+        sendMail(order.getClientEmail(),"Your invoice saved"+totalPrice.doubleValue(),toString());
         Order savedOrder = orderRep.save(order);
         return OrderMapper.INSTANCE.toDto(savedOrder);
+    }
+    private void sendMail(String to, String subject, String text) {
+        OkHttpClient client = new OkHttpClient();
+        RequestBody body=RequestBody.create("null".getBytes());
+        HttpUrl url = HttpUrl.parse("http://localhost:8080/api/v1/mail/sendMail").newBuilder()
+                .addQueryParameter("to", to).
+                addQueryParameter("subject", subject).
+                addQueryParameter("text", text).build();
+
+        Request request = new Request.Builder().
+                url(String.format("http://localhost:8080/api/v1/mail/sendMail?to=%s&subject=%s&text=%s",to,subject,text))
+                // url(url)
+                .post(body)
+                .build();
+        try {
+            client.newCall(request).execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
